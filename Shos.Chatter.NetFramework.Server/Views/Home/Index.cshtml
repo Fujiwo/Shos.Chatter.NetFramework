@@ -1,0 +1,288 @@
+﻿<form id="form">
+    <hr>
+    <h2>Users</h2>
+    <div>
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <span class="input-group-text" id="basic-addon1">New User</span>
+            </div>
+            <input type="text" id="userName" placeholder="User Name" />
+            <input type="button" id="addUserButton" value="Append" disabled="disabled" class="btn btn-primary" />
+        </div>
+
+        <table class="table table-striped table-sm">
+            <thead>
+                <tr><th>Name</th><th>Id</th><th></th><th></th></tr>
+            </thead>
+            <tbody id="userList"></tbody>
+        </table>
+
+        <hr>
+
+        <h2>Chats</h2>
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <span class="input-group-text" id="basic-addon1">User Id</span>
+            </div>
+            <input type="text" id="userId" placeholder="User Id" class="text-right"/>
+            <div class="input-group-prepend">
+                <span class="input-group-text" id="basic-addon1">New Chat</span>
+            </div>
+            <input type="text" id="chatContent" placeholder="Content" />
+            <input type="button" id="sendChatButton" value="Send" disabled="disabled" class="btn btn-primary"/>
+        </div>
+
+        <table class="table table-striped table-sm">
+            <thead>
+                <tr><th>Content</th><th>UpdateDateTime</th><th>User Id</th><th></th><th></th></tr>
+            </thead>
+            <tbody id="chatList"></tbody>
+        </table>
+    </div>
+</form>
+
+@section styles {
+    <style>
+    h1 {
+        position: relative;
+        padding: 5px 5px 5px 42px;
+        background: #77c3df;
+        font-size: 20px;
+        color: white;
+        margin-left: -33px;
+        line-height: 1.3;
+        z-index: -1;
+    }
+
+    h1:before {
+        position: absolute;
+        content: '';
+        left: -2px;
+        top: -2px;
+        border: none;
+        border-left: solid 40px white;
+        border-bottom: solid 79px transparent;
+        z-index: -2
+    }
+    </style >
+}
+
+@section scripts {
+    <script src="~/Scripts/jquery.signalR-2.4.1.min.js" > </script >
+    <script >
+    function appendUser(chatter, userName) {
+        let user = { Name: userName };
+
+        $.ajax({
+            url: '../api/Users',
+            type: 'POST',
+            data: JSON.stringify(user),
+            async: true,
+            dataType: 'json',
+            contentType: "application/json",
+            success: function (user) {
+                chatter.invoke("UpdateUsers").done(function () {
+                    $("#userName").val("");
+                });
+            },
+            error: function (xhr, ajaxOptions, thrownError) {
+                console && console.log("request failed: " + thrownError);
+            }
+        });
+    }
+
+    function sendChat(chatter, userId, chatContent) {
+        let chat = { Content: chatContent, UserId: userId };
+
+        $.ajax({
+            url: '../api/Chats',
+            type: 'POST',
+            data: JSON.stringify(chat),
+            async: true,
+            dataType: 'json',
+            contentType: "application/json",
+            success: function (chat) {
+                chatter.invoke("UpdateChats").done(function () {
+                    $("#chatContent").val("");
+                });
+            },
+            error: function (xhr, ajaxOptions, thrownError) {
+                console && console.log("request failed: " + thrownError);
+            }
+        });
+    }
+
+    function updateUser(chatter, user) {
+        $.ajax({
+            url: '../api/Users/' + String(user.Id),
+            type: 'PUT',
+            data: JSON.stringify(user),
+            async: true,
+            dataType: 'json',
+            contentType: "application/json",
+            success: function (user) {
+                chatter.invoke("UpdateUsers");
+            },
+            error: function (xhr, ajaxOptions, thrownError) {
+                console && console.log("request failed: " + thrownError);
+            }
+        });
+    }
+
+    function deleteUser(chatter, user) {
+        $.ajax({
+            url: '../api/Users/' + String(user.Id),
+            type: 'DELETE',
+            async: true,
+            success: function (user) {
+                chatter.invoke("UpdateUsers");
+            },
+            error: function (xhr, ajaxOptions, thrownError) {
+                console && console.log("request failed: " + thrownError);
+            }
+        });
+    }
+
+    function updateChat(chatter, chat) {
+        $.ajax({
+            url: '../api/Chats/' + String(chat.Id),
+            type: 'PUT',
+            data: JSON.stringify(chat),
+            async: true,
+            dataType: 'json',
+            contentType: "application/json",
+            success: function (chat) {
+                chatter.invoke("UpdateChats");
+            },
+            error: function (xhr, ajaxOptions, thrownError) {
+                console && console.log("request failed: " + thrownError);
+            }
+        });
+    }
+
+    function deleteChat(chatter, chat) {
+        $.ajax({
+            url: '../api/Chats/' + String(chat.Id),
+            type: 'DELETE',
+            async: true,
+            success: function (chat) {
+                chatter.invoke("UpdateChats");
+            },
+            error: function (xhr, ajaxOptions, thrownError) {
+                console && console.log("request failed: " + thrownError);
+            }
+        });
+    }
+
+    function fillUserList(chatter, userList) {
+        $("#userList").empty();
+        userList.forEach(function (user, index, array) {
+            let buttons = '<td><input type="button" id="updateUserButton' + String(user.Id) + '" value="Update" class="btn btn-secondary btn-sm" />' +
+                '<input type="button" id="deleteUserButton' + String(user.Id) + '" value="Delete" class="btn btn-danger btn-sm" /></td>';
+            $('#userList').append('<tr><td><input type="text" id="userName' + String(user.Id) + '" value="' + user.Name + '" placeholder="User Name" /></td><td class="text-right">' + String(user.Id) + '</td>' + buttons + '</tr>');
+
+            $('#updateUserButton' + String(user.Id)).click(function () {
+                let userName = $('#userName' + String(user.Id)).val();
+                user.Name = userName;
+                updateUser(chatter, user);
+            });
+
+            $('#deleteUserButton' + String(user.Id)).click(function () {
+                deleteUser(chatter, user);
+            });
+        });
+    }
+
+    function fillChatList(chatter, chatList) {
+        $("#chatList").empty();
+        chatList.forEach(function (chat, index, array) {
+            let buttons = '<td><input type="button" id="updateChatButton' + String(chat.Id) + '" value="Update" class="btn btn-secondary btn-sm" />' +
+                '<input type="button" id="deleteChatButton' + String(chat.Id) + '" value="Delete" class="btn btn-danger btn-sm" /></td>';
+            $('#chatList').append('<tr><td><input type="text" id="chatContent' + String(chat.Id) + '" value="' + chat.Content + '" placeholder="Content" /></td><td>' + chat.UpdateDateTime + '</td><td class="text-right">' + String(chat.UserId) + '</td>' + buttons + '</tr>');
+
+            $('#updateChatButton' + String(chat.Id)).click(function () {
+                let chatContent = $('#chatContent' + String(chat.Id)).val();
+                chat.Content = chatContent;
+                updateChat(chatter, chat);
+            });
+
+            $('#deleteChatButton' + String(chat.Id)).click(function () {
+                deleteChat(chatter, chat);
+            });
+        });
+    }
+
+    function initializeUserList(chatter) {
+        $.ajax({
+            url: '../api/Users',
+            type: 'GET',
+            cache: false,
+            async: true,
+            dataType: 'json',
+            contentType: "application/json",
+            success: function (userList) {
+                fillUserList(chatter, userList);
+            },
+            error: function (xhr, ajaxOptions, thrownError) {
+                console && console.log("request failed: " + thrownError);
+            }
+        });
+    }
+
+    function initializeChatList(chatter) {
+        $.ajax({
+            url: '../api/Chats',
+            type: 'GET',
+            cache: false,
+            async: true,
+            dataType: 'json',
+            contentType: "application/json",
+            success: function (chatList) {
+                fillChatList(chatter, chatList);
+            },
+            error: function (xhr, ajaxOptions, thrownError) {
+                console && console.log("request failed: " + thrownError);
+            }
+        });
+    }
+
+    function initialize() {
+        var connection = $.hubConnection();
+        var chatter = connection.createHubProxy("chatter");
+
+        initializeUserList(chatter);
+        initializeChatList(chatter);
+
+        chatter.on("UpdateUsers", function () {
+            initializeUserList(chatter);
+        });
+        chatter.on("UpdateChats", function () {
+            initializeChatList(chatter);
+        });
+
+        $("#addUserButton").click(function () {
+            let userName = $("#userName").val();
+            appendUser(chatter, userName);
+        });
+
+        $("#sendChatButton").click(function () {
+            let chatContent = $("#chatContent").val();
+            let userId = Number($("#userId").val());
+            sendChat(chatter, userId, chatContent);
+        });
+
+        connection.start(function () {
+            $("#addUserButton").prop("disabled", false);
+            $("#sendChatButton").prop("disabled", false);
+        });
+    }
+
+    function main() {
+        initialize();
+    }
+
+    $(function () {
+        main();
+    })
+    </script>
+}
