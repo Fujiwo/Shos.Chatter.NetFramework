@@ -32,7 +32,7 @@ namespace Shos.Chatter.NetFramework.Wpf.ViewModels
             {
                 var name = (string)parameter;
                 if (!string.IsNullOrWhiteSpace(name))
-                    Model.Add(new Shos.Chatter.NetFramework.Models.UserBase { Name = name }).Wait();
+                    Model.Add(new Shos.Chatter.NetFramework.Models.UserBase { Name = name });
             }
         }
 
@@ -46,7 +46,7 @@ namespace Shos.Chatter.NetFramework.Wpf.ViewModels
                 var id = (int)parameter;
                 var user = Model.Users.FirstOrDefault(u => u.Id == id);
                 if (user != null)
-                    Model.Update(user).Wait();
+                    Model.Update(user);
             }
         }
 
@@ -60,7 +60,7 @@ namespace Shos.Chatter.NetFramework.Wpf.ViewModels
                 var id = (int)parameter;
                 var user = Model.Users.FirstOrDefault(u => u.Id == id);
                 if (user != null)
-                    Model.Delete(user).Wait();
+                    Model.Delete(user);
             }
         }
 
@@ -73,7 +73,7 @@ namespace Shos.Chatter.NetFramework.Wpf.ViewModels
             {
                 var content = (string)parameter;
                 if (!string.IsNullOrWhiteSpace(content))
-                    Model.Add(new Shos.Chatter.NetFramework.Models.ChatBase { Content = content }).Wait();
+                    Model.Add(new Shos.Chatter.NetFramework.Models.ChatBase { Content = content });
             }
         }
 
@@ -87,7 +87,7 @@ namespace Shos.Chatter.NetFramework.Wpf.ViewModels
                 var id = (int)parameter;
                 var chat = Model.Chats.FirstOrDefault(c => c.Id == id);
                 if (chat != null)
-                    Model.Update(chat).Wait();
+                    Model.Update(chat);
             }
         }
 
@@ -101,7 +101,7 @@ namespace Shos.Chatter.NetFramework.Wpf.ViewModels
                 var id = (int)parameter;
                 var chat = Model.Chats.FirstOrDefault(c => c.Id == id);
                 if (chat != null)
-                    Model.Delete(chat).Wait();
+                    Model.Delete(chat);
             }
         }
 
