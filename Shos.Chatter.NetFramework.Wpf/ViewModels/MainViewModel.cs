@@ -6,6 +6,7 @@ using System.Windows.Input;
 namespace Shos.Chatter.NetFramework.Wpf.ViewModels
 {
     using Models;
+    using Shos.Chatter.NetFramework.Models;
 
     public class MainViewModel : BindableBase
     {
@@ -32,7 +33,7 @@ namespace Shos.Chatter.NetFramework.Wpf.ViewModels
             {
                 var name = (string)parameter;
                 if (!string.IsNullOrWhiteSpace(name))
-                    Model.Add(new Shos.Chatter.NetFramework.Models.UserBase { Name = name });
+                    Model.Add(new UserBase { Name = name });
             }
         }
 
@@ -73,7 +74,7 @@ namespace Shos.Chatter.NetFramework.Wpf.ViewModels
             {
                 var content = (string)parameter;
                 if (!string.IsNullOrWhiteSpace(content))
-                    Model.Add(new Shos.Chatter.NetFramework.Models.ChatBase { Content = content });
+                    Model.Add(new ChatBase { Content = content });
             }
         }
 
@@ -135,8 +136,8 @@ namespace Shos.Chatter.NetFramework.Wpf.ViewModels
             set => Model.UserId = value;
         }
 
-        public IEnumerable<Shos.Chatter.NetFramework.Models.UserBase> Users => Model.Users;
-        public IEnumerable<Shos.Chatter.NetFramework.Models.ChatBase> Chats => Model.Chats;
+        public IEnumerable<UserBase> Users => Model.Users;
+        public IEnumerable<ChatBase> Chats => Model.Chats;
 
         public ChatterModel Model { get => model; set => model = value; }
     }

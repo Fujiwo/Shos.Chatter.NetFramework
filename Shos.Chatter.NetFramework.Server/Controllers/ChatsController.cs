@@ -14,7 +14,7 @@ namespace Shos.Chatter.NetFramework.Server.Controllers
 {
     public class ChatsController : ApiController
     {
-        ChatterModel db = new ChatterModel();
+        ChatterContext db = new ChatterContext();
 
         // GET: api/Chats
         public async Task<IEnumerable<ChatBase>> GetChats()
