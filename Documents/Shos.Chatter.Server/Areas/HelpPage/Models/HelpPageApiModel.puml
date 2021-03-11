@@ -1,0 +1,21 @@
+@startuml
+class HelpPageApiModel {
+    + HelpPageApiModel()
+    + RequestDocumentation : string <<get>> <<set>>
+}
+class "Collection`1"<T> {
+}
+class "IList`1"<T> {
+}
+class "IDictionary`2"<T1,T2> {
+}
+HelpPageApiModel --> "ApiDescription" ApiDescription
+HelpPageApiModel --> "UriParameters<ParameterDescription>" "Collection`1"
+HelpPageApiModel --> "RequestModelDescription" ModelDescription
+HelpPageApiModel --> "RequestBodyParameters<ParameterDescription>" "IList`1"
+HelpPageApiModel --> "ResourceDescription" ModelDescription
+HelpPageApiModel --> "ResourceProperties<ParameterDescription>" "IList`1"
+HelpPageApiModel --> "SampleRequests<MediaTypeHeaderValue,object>" "IDictionary`2"
+HelpPageApiModel --> "SampleResponses<MediaTypeHeaderValue,object>" "IDictionary`2"
+HelpPageApiModel --> "ErrorMessages<string>" "Collection`1"
+@enduml

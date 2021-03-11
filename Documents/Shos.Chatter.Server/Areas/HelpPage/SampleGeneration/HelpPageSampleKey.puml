@@ -1,0 +1,18 @@
+@startuml
+class HelpPageSampleKey {
+    + HelpPageSampleKey(mediaType:MediaTypeHeaderValue)
+    + HelpPageSampleKey(mediaType:MediaTypeHeaderValue, type:Type)
+    + HelpPageSampleKey(sampleDirection:SampleDirection, controllerName:string, actionName:string, parameterNames:IEnumerable<string>)
+    + HelpPageSampleKey(mediaType:MediaTypeHeaderValue, sampleDirection:SampleDirection, controllerName:string, actionName:string, parameterNames:IEnumerable<string>)
+    + ControllerName : string <<get>>
+    + ActionName : string <<get>>
+    + SampleDirection : SampleDirection? <<get>>
+    + <<override>> Equals(obj:object) : bool
+    + <<override>> GetHashCode() : int
+}
+class "HashSet`1"<T> {
+}
+HelpPageSampleKey --> "MediaType" MediaTypeHeaderValue
+HelpPageSampleKey --> "ParameterNames<string>" "HashSet`1"
+HelpPageSampleKey --> "ParameterType" Type
+@enduml

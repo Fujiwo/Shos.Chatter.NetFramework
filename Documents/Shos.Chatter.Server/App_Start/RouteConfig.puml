@@ -1,0 +1,5 @@
+@startuml
+class RouteConfig {
+    + {static} RegisterRoutes(routes:RouteCollection) : void
+}
+@enduml

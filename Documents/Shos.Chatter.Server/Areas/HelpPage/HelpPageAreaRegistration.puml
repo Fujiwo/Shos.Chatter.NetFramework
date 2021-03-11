@@ -1,0 +1,7 @@
+@startuml
+class HelpPageAreaRegistration {
+    + <<override>> AreaName : string <<get>>
+    + <<override>> RegisterArea(context:AreaRegistrationContext) : void
+}
+AreaRegistration <|-- HelpPageAreaRegistration
+@enduml

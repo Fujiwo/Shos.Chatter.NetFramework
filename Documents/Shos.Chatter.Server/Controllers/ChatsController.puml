@@ -1,0 +1,13 @@
+@startuml
+class ChatsController {
+    + <<async>> GetChats() : Task<IEnumerable<ChatBase>>
+    + <<async>> GetChat(id:int) : Task<IHttpActionResult>
+    + <<async>> PutChat(id:int, chat:ChatBase) : Task<IHttpActionResult>
+    + <<async>> PostChat(chat:ChatBase) : Task<IHttpActionResult>
+    + <<async>> DeleteChat(id:int) : Task<IHttpActionResult>
+    ChatExists(id:int) : bool
+    <<async>> GetUser(id:int) : Task<User?>
+}
+ApiController <|-- ChatsController
+ChatsController o-> "context" ChatterContext
+@enduml

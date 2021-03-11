@@ -1,0 +1,11 @@
+@startuml
+class HelpController {
+    + HelpController()
+    + HelpController(config:HttpConfiguration)
+    + Index() : ActionResult
+    + Api(apiId:string) : ActionResult
+    + ResourceModel(modelName:string) : ActionResult
+}
+Controller <|-- HelpController
+HelpController --> "Configuration" HttpConfiguration
+@enduml

@@ -1,0 +1,7 @@
+@startuml
+class ModelNameAttribute <<sealed>> {
+    + ModelNameAttribute(name:string)
+    + Name : string <<get>>
+}
+Attribute <|-- ModelNameAttribute
+@enduml

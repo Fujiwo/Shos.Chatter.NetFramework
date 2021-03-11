@@ -1,0 +1,5 @@
+@startuml
+class BundleConfig {
+    + {static} RegisterBundles(bundles:BundleCollection) : void
+}
+@enduml

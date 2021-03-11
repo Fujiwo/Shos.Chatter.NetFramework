@@ -1,0 +1,9 @@
+@startuml
+class ImageSample {
+    + ImageSample(src:string)
+    + Src : string <<get>>
+    + <<override>> Equals(obj:object) : bool
+    + <<override>> GetHashCode() : int
+    + <<override>> ToString() : string
+}
+@enduml

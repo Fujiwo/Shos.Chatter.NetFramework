@@ -1,0 +1,5 @@
+@startuml
+class ModelNameHelper <<static>> {
+    + {static} GetModelName(type:Type) : string
+}
+@enduml

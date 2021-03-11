@@ -1,0 +1,5 @@
+@startuml
+class ApiDescriptionExtensions <<static>> {
+    + {static} GetFriendlyId(description:ApiDescription) : string
+}
+@enduml

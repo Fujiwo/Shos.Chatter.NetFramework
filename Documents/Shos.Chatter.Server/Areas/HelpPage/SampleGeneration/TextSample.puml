@@ -1,0 +1,9 @@
+@startuml
+class TextSample {
+    + TextSample(text:string)
+    + Text : string <<get>>
+    + <<override>> Equals(obj:object) : bool
+    + <<override>> GetHashCode() : int
+    + <<override>> ToString() : string
+}
+@enduml

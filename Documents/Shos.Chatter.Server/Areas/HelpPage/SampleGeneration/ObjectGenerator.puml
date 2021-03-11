@@ -1,0 +1,10 @@
+@startuml
+class ObjectGenerator {
+    + GenerateObject(type:Type) : object
+}
+class SimpleTypeObjectGenerator {
+    + {static} CanGenerateObject(type:Type) : bool
+    + GenerateObject(type:Type) : object
+}
+ObjectGenerator +-- SimpleTypeObjectGenerator
+@enduml

@@ -1,0 +1,5 @@
+@startuml
+class FilterConfig {
+    + {static} RegisterGlobalFilters(filters:GlobalFilterCollection) : void
+}
+@enduml

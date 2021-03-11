@@ -1,0 +1,9 @@
+@startuml
+class ComplexTypeModelDescription {
+    + ComplexTypeModelDescription()
+}
+class "Collection`1"<T> {
+}
+ModelDescription <|-- ComplexTypeModelDescription
+ComplexTypeModelDescription --> "Properties<ParameterDescription>" "Collection`1"
+@enduml

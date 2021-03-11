@@ -1,0 +1,5 @@
+@startuml
+class WebApiConfig <<static>> {
+    + {static} Register(config:HttpConfiguration) : void
+}
+@enduml

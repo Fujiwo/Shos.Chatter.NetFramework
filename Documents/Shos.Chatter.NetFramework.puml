@@ -1,0 +1,19 @@
+@startuml
+!include .\\Shos.Chatter.Models\ChatterContext.puml
+!include .\\Shos.Chatter.Server\Global.asax.puml
+!include .\\Shos.Chatter.Server\Controllers\ChatsController.puml
+!include .\\Shos.Chatter.Server\Controllers\HomeController.puml
+!include .\\Shos.Chatter.Server\Controllers\UsersController.puml
+!include .\\Shos.Chatter.Server\Hubs\ChatterHub.puml
+!include .\\Shos.Chatter.Server\Hubs\Startup.puml
+!include .\\Shos.Chatter.Wpf\App.xaml.puml
+!include .\\Shos.Chatter.Wpf\Models\BindableBase.puml
+!include .\\Shos.Chatter.Wpf\Models\ChatterModel.puml
+!include .\\Shos.Chatter.Wpf\Properties\AssemblyInfo.puml
+!include .\\Shos.Chatter.Wpf\Properties\Resources.Designer.puml
+!include .\\Shos.Chatter.Wpf\Properties\Settings.Designer.puml
+!include .\\Shos.Chatter.Wpf\ViewModels\DateTimeConverter.puml
+!include .\\Shos.Chatter.Wpf\ViewModels\MainViewModel.puml
+!include .\\Shos.Chatter.Wpf\Views\MainWindow.xaml.puml
+!include .\\Shos.Chatter.Wpf\Views\PlaceHolderBehavior.puml
+@enduml

@@ -1,0 +1,5 @@
+@startuml
+class HelpPageConfig <<static>> {
+    + {static} Register(config:HttpConfiguration) : void
+}
+@enduml

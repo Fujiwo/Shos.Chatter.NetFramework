@@ -1,0 +1,20 @@
+@startuml
+class HelpPageConfigurationExtensions <<static>> {
+    + {static} SetDocumentationProvider(config:HttpConfiguration, documentationProvider:IDocumentationProvider) : void
+    + {static} SetSampleObjects(config:HttpConfiguration, sampleObjects:IDictionary<Type, object>) : void
+    + {static} SetSampleRequest(config:HttpConfiguration, sample:object, mediaType:MediaTypeHeaderValue, controllerName:string, actionName:string) : void
+    + {static} SetSampleRequest(config:HttpConfiguration, sample:object, mediaType:MediaTypeHeaderValue, controllerName:string, actionName:string, parameterNames:string[]) : void
+    + {static} SetSampleResponse(config:HttpConfiguration, sample:object, mediaType:MediaTypeHeaderValue, controllerName:string, actionName:string) : void
+    + {static} SetSampleResponse(config:HttpConfiguration, sample:object, mediaType:MediaTypeHeaderValue, controllerName:string, actionName:string, parameterNames:string[]) : void
+    + {static} SetSampleForMediaType(config:HttpConfiguration, sample:object, mediaType:MediaTypeHeaderValue) : void
+    + {static} SetSampleForType(config:HttpConfiguration, sample:object, mediaType:MediaTypeHeaderValue, type:Type) : void
+    + {static} SetActualRequestType(config:HttpConfiguration, type:Type, controllerName:string, actionName:string) : void
+    + {static} SetActualRequestType(config:HttpConfiguration, type:Type, controllerName:string, actionName:string, parameterNames:string[]) : void
+    + {static} SetActualResponseType(config:HttpConfiguration, type:Type, controllerName:string, actionName:string) : void
+    + {static} SetActualResponseType(config:HttpConfiguration, type:Type, controllerName:string, actionName:string, parameterNames:string[]) : void
+    + {static} GetHelpPageSampleGenerator(config:HttpConfiguration) : HelpPageSampleGenerator
+    + {static} SetHelpPageSampleGenerator(config:HttpConfiguration, sampleGenerator:HelpPageSampleGenerator) : void
+    + {static} GetModelDescriptionGenerator(config:HttpConfiguration) : ModelDescriptionGenerator
+    + {static} GetHelpPageApiModel(config:HttpConfiguration, apiDescriptionId:string) : HelpPageApiModel
+}
+@enduml

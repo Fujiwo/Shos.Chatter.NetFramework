@@ -1,0 +1,6 @@
+@startuml
+interface IModelDocumentationProvider {
+    GetDocumentation(member:MemberInfo) : string
+    GetDocumentation(type:Type) : string
+}
+@enduml

@@ -1,0 +1,5 @@
+@startuml
+class Startup {
+    + Configuration(app:IAppBuilder) : void
+}
+@enduml

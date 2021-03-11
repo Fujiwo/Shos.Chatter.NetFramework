@@ -1,0 +1,9 @@
+@startuml
+class EnumTypeModelDescription {
+    + EnumTypeModelDescription()
+}
+class "Collection`1"<T> {
+}
+ModelDescription <|-- EnumTypeModelDescription
+EnumTypeModelDescription --> "Values<EnumValueDescription>" "Collection`1"
+@enduml

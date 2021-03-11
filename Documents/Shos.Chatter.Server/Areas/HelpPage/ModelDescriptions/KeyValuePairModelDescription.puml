@@ -1,0 +1,7 @@
+@startuml
+class KeyValuePairModelDescription {
+}
+ModelDescription <|-- KeyValuePairModelDescription
+KeyValuePairModelDescription --> "KeyModelDescription" ModelDescription
+KeyValuePairModelDescription --> "ValueModelDescription" ModelDescription
+@enduml

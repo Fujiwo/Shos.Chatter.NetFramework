@@ -1,0 +1,21 @@
+@startuml
+class HelpPageSampleGenerator {
+    + HelpPageSampleGenerator()
+    + GetSampleRequests(api:ApiDescription) : IDictionary<MediaTypeHeaderValue, object>
+    + GetSampleResponses(api:ApiDescription) : IDictionary<MediaTypeHeaderValue, object>
+    + <<virtual>> GetSample(api:ApiDescription, sampleDirection:SampleDirection) : IDictionary<MediaTypeHeaderValue, object>
+    + <<virtual>> GetActionSample(controllerName:string, actionName:string, parameterNames:IEnumerable<string>, type:Type, formatter:MediaTypeFormatter, mediaType:MediaTypeHeaderValue, sampleDirection:SampleDirection) : object
+    + <<virtual>> GetSampleObject(type:Type) : object
+    + <<virtual>> ResolveHttpRequestMessageType(api:ApiDescription) : Type
+    + <<virtual>> ResolveType(api:ApiDescription, controllerName:string, actionName:string, parameterNames:IEnumerable<string>, sampleDirection:SampleDirection, formatters:Collection<MediaTypeFormatter>) : Type
+    + <<virtual>> WriteSampleObjectUsingFormatter(formatter:MediaTypeFormatter, value:object, type:Type, mediaType:MediaTypeHeaderValue) : object
+}
+class "IDictionary`2"<T1,T2> {
+}
+class "IList`1"<T> {
+}
+HelpPageSampleGenerator --> "ActualHttpMessageTypes<HelpPageSampleKey,Type>" "IDictionary`2"
+HelpPageSampleGenerator --> "ActionSamples<HelpPageSampleKey,object>" "IDictionary`2"
+HelpPageSampleGenerator --> "SampleObjects<Type,object>" "IDictionary`2"
+HelpPageSampleGenerator --> "SampleObjectFactories<Func<HelpPageSampleGenerator, Type, object>>" "IList`1"
+@enduml

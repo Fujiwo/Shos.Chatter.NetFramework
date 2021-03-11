@@ -1,0 +1,9 @@
+@startuml
+class ModelDescriptionGenerator {
+    + ModelDescriptionGenerator(config:HttpConfiguration)
+    + GetOrCreateModelDescription(modelType:Type) : ModelDescription
+}
+class "Dictionary`2"<T1,T2> {
+}
+ModelDescriptionGenerator --> "GeneratedModels<string,ModelDescription>" "Dictionary`2"
+@enduml

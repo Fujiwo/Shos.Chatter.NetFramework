@@ -1,0 +1,9 @@
+@startuml
+class InvalidSample {
+    + InvalidSample(errorMessage:string)
+    + ErrorMessage : string <<get>>
+    + <<override>> Equals(obj:object) : bool
+    + <<override>> GetHashCode() : int
+    + <<override>> ToString() : string
+}
+@enduml

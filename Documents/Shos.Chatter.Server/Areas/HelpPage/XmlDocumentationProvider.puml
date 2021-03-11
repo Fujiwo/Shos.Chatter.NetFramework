@@ -1,0 +1,13 @@
+@startuml
+class XmlDocumentationProvider {
+    + XmlDocumentationProvider(documentPath:string)
+    + GetDocumentation(controllerDescriptor:HttpControllerDescriptor) : string
+    + <<virtual>> GetDocumentation(actionDescriptor:HttpActionDescriptor) : string
+    + <<virtual>> GetDocumentation(parameterDescriptor:HttpParameterDescriptor) : string
+    + GetResponseDocumentation(actionDescriptor:HttpActionDescriptor) : string
+    + GetDocumentation(member:MemberInfo) : string
+    + GetDocumentation(type:Type) : string
+}
+IDocumentationProvider <|-- XmlDocumentationProvider
+IModelDocumentationProvider <|-- XmlDocumentationProvider
+@enduml

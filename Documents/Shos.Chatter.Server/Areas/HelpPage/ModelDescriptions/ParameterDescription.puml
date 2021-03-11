@@ -1,0 +1,11 @@
+@startuml
+class ParameterDescription {
+    + ParameterDescription()
+    + Documentation : string <<get>> <<set>>
+    + Name : string <<get>> <<set>>
+}
+class "Collection`1"<T> {
+}
+ParameterDescription --> "Annotations<ParameterAnnotation>" "Collection`1"
+ParameterDescription --> "TypeDescription" ModelDescription
+@enduml

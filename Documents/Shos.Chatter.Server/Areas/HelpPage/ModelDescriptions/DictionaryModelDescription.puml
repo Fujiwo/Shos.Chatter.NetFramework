@@ -1,0 +1,5 @@
+@startuml
+class DictionaryModelDescription {
+}
+KeyValuePairModelDescription <|-- DictionaryModelDescription
+@enduml

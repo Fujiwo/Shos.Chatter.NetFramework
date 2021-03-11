@@ -1,0 +1,7 @@
+@startuml
+class ChatterHub {
+    + UpdateUsers() : void
+    + UpdateChats() : void
+}
+Hub <|-- ChatterHub
+@enduml

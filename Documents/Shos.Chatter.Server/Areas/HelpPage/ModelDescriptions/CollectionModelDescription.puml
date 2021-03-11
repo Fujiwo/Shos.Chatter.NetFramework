@@ -1,0 +1,6 @@
+@startuml
+class CollectionModelDescription {
+}
+ModelDescription <|-- CollectionModelDescription
+CollectionModelDescription --> "ElementDescription" ModelDescription
+@enduml

@@ -1,0 +1,6 @@
+@startuml
+enum SampleDirection {
+    Request= 0,
+    Response,
+}
+@enduml

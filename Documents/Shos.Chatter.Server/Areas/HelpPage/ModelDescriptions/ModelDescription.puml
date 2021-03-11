@@ -1,0 +1,7 @@
+@startuml
+abstract class ModelDescription {
+    + Documentation : string <<get>> <<set>>
+    + Name : string <<get>> <<set>>
+}
+ModelDescription --> "ModelType" Type
+@enduml

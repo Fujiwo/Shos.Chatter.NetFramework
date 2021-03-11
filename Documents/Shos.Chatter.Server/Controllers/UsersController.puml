@@ -1,0 +1,12 @@
+@startuml
+class UsersController {
+    + <<async>> GetUsers() : Task<IEnumerable<UserBase>>
+    + <<async>> GetUser(id:int) : Task<IHttpActionResult>
+    + <<async>> PutUser(id:int, user:UserBase) : Task<IHttpActionResult>
+    + <<async>> PostUser(user:UserBase) : Task<IHttpActionResult>
+    + <<async>> DeleteUser(id:int) : Task<IHttpActionResult>
+    UserExists(id:int) : bool
+}
+ApiController <|-- UsersController
+UsersController o-> "context" ChatterContext
+@enduml
